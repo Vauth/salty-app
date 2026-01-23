@@ -18,7 +18,7 @@ object HashUtils {
     private const val ALGORITHM = "AES/CBC/PKCS5Padding"
     private const val KEY_ALGORITHM = "AES"
     private const val SECRET_KEY_FACTORY_ALGORITHM = "PBKDF2WithHmacSHA256"
-    private const val ITERATION_COUNT = 10000
+    private const val ITERATION_COUNT = 600000
     private const val KEY_LENGTH = 256
     
     /**
@@ -107,7 +107,7 @@ object HashUtils {
      */
     private fun deriveKey(userSalt: String): SecretKeySpec {
         // Use a fixed application salt to prevent rainbow table attacks
-        val appSalt = "Salty-App-2024-Fixed-Salt-v1".toByteArray(StandardCharsets.UTF_8)
+        val appSalt = "Salty-Fixed-Salt".toByteArray(StandardCharsets.UTF_8)
         
         // Combine user salt with app salt for the PBKDF2 salt parameter
         val combinedSalt = appSalt + userSalt.toByteArray(StandardCharsets.UTF_8)
