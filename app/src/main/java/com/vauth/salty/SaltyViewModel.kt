@@ -1,12 +1,12 @@
-package com.example.salty
+package com.vauth.salty
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.salty.data.*
-import com.example.salty.utils.DecodingException
-import com.example.salty.utils.EncodingException
-import com.example.salty.utils.HashUtils
+import com.vauth.salty.data.*
+import com.vauth.salty.utils.DecodingException
+import com.vauth.salty.utils.EncodingException
+import com.vauth.salty.utils.HashUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

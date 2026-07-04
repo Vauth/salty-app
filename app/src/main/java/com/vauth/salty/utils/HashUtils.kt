@@ -1,4 +1,4 @@
-package com.example.salty.utils
+package com.vauth.salty.utils
 
 import android.util.Base64
 import java.nio.charset.StandardCharsets

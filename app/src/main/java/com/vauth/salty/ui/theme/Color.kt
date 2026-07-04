@@ -1,4 +1,4 @@
-package com.example.salty.ui.theme
+package com.vauth.salty.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

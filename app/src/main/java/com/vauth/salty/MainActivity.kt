@@ -1,4 +1,4 @@
-package com.example.salty
+package com.vauth.salty
 
 import android.content.Intent
 import android.net.Uri
@@ -37,9 +37,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.salty.data.MessageEntry
-import com.example.salty.data.MessageType
-import com.example.salty.ui.theme.*
+import com.vauth.salty.data.MessageEntry
+import com.vauth.salty.data.MessageType
+import com.vauth.salty.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     private val vm: SaltyViewModel by viewModels()

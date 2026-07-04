@@ -1,4 +1,4 @@
-package com.example.salty.data
+package com.vauth.salty.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.salty'
+    namespace 'com.vauth.salty'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.salty"
+        applicationId "com.vauth.salty"
         minSdk 24
         targetSdk 34
         versionCode 1
