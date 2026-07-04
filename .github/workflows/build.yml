@@ -37,6 +37,10 @@ jobs:
         with:
           gradle-version: '8.4'
 
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" | base64 --decode > ${{ github.workspace }}/upload-keystore.jks
+
       - name: Build Debug APK
         run: gradle :app:assembleDebug --no-daemon
 
