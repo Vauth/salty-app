@@ -1,3 +1,9 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp'
+}
+
 android {
     namespace 'com.example.salty'
     compileSdk 34
@@ -10,7 +16,6 @@ android {
         versionName "1.0"
     }
 
-    // Load signing values from env vars (GitHub Actions) or local gradle.properties
     def signingStoreFile = System.getenv("SIGNING_STORE_FILE") ?: project.findProperty("SIGNING_STORE_FILE")
     def signingStorePassword = System.getenv("SIGNING_STORE_PASSWORD") ?: project.findProperty("SIGNING_STORE_PASSWORD")
     def signingKeyAlias = System.getenv("SIGNING_KEY_ALIAS") ?: project.findProperty("SIGNING_KEY_ALIAS")
@@ -34,9 +39,7 @@ android {
 
     buildTypes {
         release {
-            // THIS is the key part for real signed release
             signingConfig signingConfigs.release
-
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -53,4 +56,28 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+
+    implementation 'androidx.activity:activity-compose:1.8.0'
+    implementation 'androidx.compose.ui:ui:1.5.0'
+    implementation 'androidx.compose.material3:material3:1.2.0'
+    implementation 'androidx.compose.ui:ui-tooling-preview:1.5.0'
+    implementation 'androidx.compose.material:material-icons-extended:1.5.0'
+
+    implementation 'androidx.navigation:navigation-compose:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1'
+
+    implementation 'androidx.room:room-runtime:2.5.2'
+    implementation 'androidx.room:room-ktx:2.5.2'
+    ksp 'androidx.room:room-compiler:2.5.2'
+
+    implementation 'androidx.security:security-crypto:1.1.0-alpha06'
+
+    debugImplementation 'androidx.compose.ui:ui-tooling:1.5.0'
 }
