@@ -1,0 +1,1 @@
+A secure, offline-first message encryption tool for Android.
