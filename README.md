@@ -34,7 +34,7 @@
 2. **Build and Install:**
    ```bash
    cd salty-app
-   ./gradlew installDebug
+   gradle :app:assembleRelease --no-daemon
    ```
 
 <br>
