@@ -16,6 +16,11 @@ android {
         versionName "1.0"
     }
 
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
     def signingStoreFile = System.getenv("SIGNING_STORE_FILE") ?: project.findProperty("SIGNING_STORE_FILE")
     def signingStorePassword = System.getenv("SIGNING_STORE_PASSWORD") ?: project.findProperty("SIGNING_STORE_PASSWORD")
     def signingKeyAlias = System.getenv("SIGNING_KEY_ALIAS") ?: project.findProperty("SIGNING_KEY_ALIAS")
