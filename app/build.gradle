@@ -12,8 +12,10 @@ android {
         applicationId "com.vauth.salty"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
+        def appSalt = (System.getenv("APP_SALT") ?: project.findProperty("APP_SALT") ?: "").replace("\\", "\\\\").replace("\"", "\\\"")
+        buildConfigField "String", "APP_SALT", "\"${appSalt}\""
     }
 
     dependenciesInfo {
@@ -52,6 +54,7 @@ android {
 
     buildFeatures {
         compose true
+        buildConfig true
     }
 
     composeOptions {

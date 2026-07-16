@@ -191,7 +191,7 @@ fun SaltyHeader(messageCount: Int) {
             IconButton(
                 onClick = { 
                     try {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/vauth"))
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/vauth/salty-app"))
                         context.startActivity(intent)
                     } catch (e: Exception) {
                         // Silently handle if no browser app is available

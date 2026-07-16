@@ -5,12 +5,12 @@
 ![Compose](https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=android&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 
-**Exchange sensitive information securely by encrypting messages with a shared "Salt" (Key). Built with a focus on privacy and modern design, it utilizes **AES-256-CBC** encryption and stores all history locally on your device.**
+**Exchange sensitive information securely by encrypting messages with a shared "Salt" (Key). Built with a focus on privacy and modern design, it utilizes **AES-256-GCM** encryption and stores all history locally on your device.**
 
 <br>
 
 ## ✨ Key Features
-- **🔐 Secure Encryption:** Industry-standard AES-256 with PBKDF2 (10,000 iterations).
+- **🔐 Secure Encryption:** Industry-standard AES-256 with PBKDF2 (600,000 iterations).
 - **🎨 Modern Design:** Sleek Material Design 3 interface with expressive dark mode.
 - **📱 Offline Privacy:** Zero analytics, zero cloud sync. Your data stays on your phone.
 - **⚡ Intuitive Workflow:** Simple tabs for Encoding, Decoding, and History management.

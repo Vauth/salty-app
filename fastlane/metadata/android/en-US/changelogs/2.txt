@@ -1,0 +1,4 @@
+🔒 Security upgrade! We've updated our encryption standard to AES-GCM.
+
+- Enhanced data security and authenticated encryption.
+- Under-the-hood performance improvements.
