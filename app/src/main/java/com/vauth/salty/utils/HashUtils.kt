@@ -4,31 +4,32 @@ import android.util.Base64
 import com.vauth.salty.BuildConfig
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
+import java.security.SecureRandom
 import javax.crypto.Cipher
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.GCMParameterSpec
-import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
 
-
 object HashUtils {
     private const val ALGORITHM = "AES/GCM/NoPadding"
-    private const val LEGACY_ALGORITHM = "AES/CBC/PKCS5Padding"
     private const val KEY_ALGORITHM = "AES"
     private const val SECRET_KEY_FACTORY_ALGORITHM = "PBKDF2WithHmacSHA256"
-    private const val ITERATION_COUNT = 100000
+    private const val ITERATION_COUNT = 600000 
     private const val KEY_LENGTH = 256
     private const val GCM_IV_LENGTH = 12
     private const val GCM_TAG_LENGTH_BITS = 128
 
-    
     fun encode(message: String, salt: String): String {
         try {
             val key = deriveKey(salt)
+            
+            val iv = ByteArray(GCM_IV_LENGTH)
+            SecureRandom().nextBytes(iv)
+            
             val cipher = Cipher.getInstance(ALGORITHM)
-            cipher.init(Cipher.ENCRYPT_MODE, key)
-            val iv = cipher.iv
+            cipher.init(Cipher.ENCRYPT_MODE, key, GCMParameterSpec(GCM_TAG_LENGTH_BITS, iv))
+            
             val encryptedBytes = cipher.doFinal(message.toByteArray(StandardCharsets.UTF_8))
             val combined = iv + encryptedBytes
             return Base64.encodeToString(combined, Base64.NO_WRAP)
@@ -41,30 +42,20 @@ object HashUtils {
         try {
             val combined = Base64.decode(encodedMessage, Base64.NO_WRAP)
             
-            if (combined.size > GCM_IV_LENGTH) {
-                try {
-                    val iv = combined.copyOfRange(0, GCM_IV_LENGTH)
-                    val encryptedBytes = combined.copyOfRange(GCM_IV_LENGTH, combined.size)
-                    val key = deriveKey(salt)
-                    val cipher = Cipher.getInstance(ALGORITHM)
-                    cipher.init(Cipher.DECRYPT_MODE, key, GCMParameterSpec(GCM_TAG_LENGTH_BITS, iv))
-                    val decryptedBytes = cipher.doFinal(encryptedBytes)
-                    return String(decryptedBytes, StandardCharsets.UTF_8)
-                } catch (_: Exception) {
-                }
-            }
-
-            if (combined.size <= 16) {
+            if (combined.size <= GCM_IV_LENGTH) {
                 throw DecodingException("Encoded message is too short")
             }
 
-            val iv = combined.copyOfRange(0, 16)
-            val encryptedBytes = combined.copyOfRange(16, combined.size)
+            val iv = combined.copyOfRange(0, GCM_IV_LENGTH)
+            val encryptedBytes = combined.copyOfRange(GCM_IV_LENGTH, combined.size)
             val key = deriveKey(salt)
-            val cipher = Cipher.getInstance(LEGACY_ALGORITHM)
-            cipher.init(Cipher.DECRYPT_MODE, key, IvParameterSpec(iv))
+            
+            val cipher = Cipher.getInstance(ALGORITHM)
+            cipher.init(Cipher.DECRYPT_MODE, key, GCMParameterSpec(GCM_TAG_LENGTH_BITS, iv))
             val decryptedBytes = cipher.doFinal(encryptedBytes)
+            
             return String(decryptedBytes, StandardCharsets.UTF_8)
+            
         } catch (e: Exception) {
             throw DecodingException("Failed to decode message: ${e.message}", e)
         }
