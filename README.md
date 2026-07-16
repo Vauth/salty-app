@@ -10,7 +10,7 @@
 <br>
 
 ## ✨ Key Features
-- **🔐 Secure Encryption:** Industry-standard AES-256 with PBKDF2 (100,000 iterations).
+- **🔐 Secure Encryption:** Industry-standard AES-256 with PBKDF2 (600,000 iterations).
 - **🎨 Modern Design:** Sleek Material Design 3 interface with expressive dark mode.
 - **📱 Offline Privacy:** Zero analytics, zero cloud sync. Your data stays on your phone.
 - **⚡ Intuitive Workflow:** Simple tabs for Encoding, Decoding, and History management.
