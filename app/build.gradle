@@ -14,7 +14,7 @@ android {
         targetSdk 34
         versionCode 2
         versionName "1.1"
-        def appSalt = (System.getenv("APP_SALT") ?: project.findProperty("APP_SALT") ?: "").replace("\\", "\\\\").replace("\"", "\\\"")
+        def appSalt = (System.getenv("APP_SALT") ?: "Salty@AES-256").replace("\\", "\\\\").replace("\"", "\\\"")
         buildConfigField "String", "APP_SALT", "\"${appSalt}\""
     }
 
