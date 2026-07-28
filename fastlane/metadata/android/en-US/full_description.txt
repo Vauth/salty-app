@@ -2,6 +2,7 @@ Exchange sensitive information securely by encrypting messages with a shared "Sa
 
 
 Key Features:
+
 - Secure Encryption: Industry-standard AES-256 with PBKDF2 (600,000 iterations).
 - Modern Design: Sleek Material Design 3 interface with expressive dark mode.
 - Offline Privacy: Zero analytics, zero cloud sync. Your data stays on your phone.
